@@ -16,7 +16,6 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-
           backgroundColor: Colors.transparent,
           child: Stack(
             children: [
@@ -286,7 +285,6 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-
         ],
 
       ),

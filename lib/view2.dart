@@ -18,17 +18,22 @@ class Overlayview extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Apply blur effect
-
+          // Background image with blur effect
+          Positioned.fill(
+            child: Image.asset(
+              'asset/image/wall.jpg', // Replace with your image path
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Apply blur effect to the background image
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), // Adjust the blur radius as needed
               child: Container(
-                color: Colors.black.withOpacity(0.2), // Slight tint for better visibility of the blur effect
+                color: Colors.black.withOpacity(0.3), // Optional: Add a semi-transparent overlay
               ),
             ),
           ),
-          // Add Row with two images overlapping the container
           Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 70),
@@ -37,7 +42,7 @@ class Overlayview extends StatelessWidget {
                 width: 340,
                 height: 504,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.9), // Semi-transparent white background
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.red),
                   boxShadow: [
@@ -66,8 +71,16 @@ class Overlayview extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const SizedBox(height: 18),
-                        const Image(width: 80, height: 90, image: AssetImage('asset/image/Ellipses.png')),
-                        const Image(width: 110, height: 50, image: AssetImage('asset/image/change.png')),
+                        const Image(
+                            width: 80,
+                            height: 90,
+                            image: AssetImage('asset/image/Ellipses.png')
+                        ),
+                        const Image(
+                            width: 110,
+                            height: 50,
+                            image: AssetImage('asset/image/change.png')
+                        ),
                         const SizedBox(height: 20),
                         Container(
                           width: 290,

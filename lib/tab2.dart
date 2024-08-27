@@ -6,7 +6,6 @@ class profile extends StatefulWidget {
   @override
   State<profile> createState() => _ProfileState();
 }
-
 class _ProfileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
@@ -22,9 +21,6 @@ class _ProfileState extends State<profile> {
               ),
             ),
           ),
-          // Your content here
-          // Add your widgets here, for example:
-
         ],
       ),
     );

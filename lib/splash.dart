@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ludokhell/login.dart';
+
+import 'login.dart';
+
 // Import your home screen widget
 
 class SplashScreen extends StatefulWidget {

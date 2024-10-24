@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ludokhell/tab2.dart';
+import 'package:ludokhel1/tab2.dart';
 import 'home.dart'; // Assuming you have imported your pages correctly
 
 void main() {
@@ -9,17 +9,15 @@ void main() {
 class btab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 2; // The index of the selected tab
 

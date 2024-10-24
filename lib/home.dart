@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ludokhell/playonline.dart';
+import 'package:ludokhel1/playonline.dart';
 import 'dart:ui';
-import 'package:ludokhell/profile1.dart';
-import 'package:ludokhell/view2.dart'; // Needed for BackdropFilter
+import 'package:ludokhel1/profile1.dart';
+import 'package:ludokhel1/view2.dart'; // Needed for BackdropFilter
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ludokhel1/wallet.dart'; // Import ScreenUtil
+
+
+
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +16,7 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+
 class _HomeState extends State<Home> {
   void _showOverlay() {
     showDialog(
@@ -22,173 +29,185 @@ class _HomeState extends State<Home> {
               // Background blur
               Positioned.fill(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
                   child: Container(
-                    color: Colors.black.withOpacity(0), // Transparent background
+                    // Transparent background
                   ),
                 ),
               ),
               // Container with new content
               Center(
                 child: Container(
-                  padding: const EdgeInsets.all(20),
-                  width: 340,
-                  height: 490,
-                  decoration: BoxDecoration(
+                  padding: EdgeInsets.all(20.w),
+                  width: 320.w,
+                  height: 389.h,
+                  decoration: BoxDecoration(border: Border.all(color: Colors.red),
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15.r),
+
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10.r,
+                        offset: Offset(0, 4.h),
                       ),
                     ],
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                    const SizedBox(height: 30),
+                      SizedBox(height: 19.h),
                       Container(
-                      width: 290,
-                      height: 65 ,
-                      decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                        child: Row(
-                          children: [const SizedBox(width: 10),const Text('My Profile ',style: TextStyle(
-                            fontSize: 17,
-                            color: Color(0xFFEc0000),
-                            fontWeight: FontWeight.bold
-                          ),),const SizedBox(width: 90),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                    opaque: false, // So the underlying screen is visible
-                                    pageBuilder: (BuildContext context, _, __) => OverlayPage(),
-                                  ),
-                                );
-                              },
-                              child: const Image(
-                                height: 100,
-                                width: 85,
-                                image: AssetImage('asset/image/VIEW.png'),
-                              ),
-                            ),
-                          ],
-                        ),
-                    ),const SizedBox(height: 15,),
-                      Container(
-                        width: 290,
-                        height: 65 ,
+                        width: 260.w,
+                        height: 55.h,
                         decoration: BoxDecoration(
                           color: Colors.red.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Row(
-                          children: [const SizedBox(width: 10),const Text('Support ',style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFFEc0000),
-                              fontWeight: FontWeight.bold
-                          ),),const SizedBox(width: 110),
+                          children: [
+                            SizedBox(width: 10.w),
+                            Text(
+                              'My Profile',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xFFEc0000),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 100.w),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   PageRouteBuilder(
-                                    opaque: false, // So the underlying screen is visible
+                                    opaque: false, //
                                     pageBuilder: (BuildContext context, _, __) => Overlayview(),
                                   ),
                                 );
                               },
-                              child: const Image(height: 100,
-                                  width: 85,image: AssetImage( 'asset/image/CONTACT.png',)),
+                              child: Image(
+                                height: 40.h,
+                                width: 62.w,
+                                image: const AssetImage('asset/image/VIEW.png'),
+                              ),
                             ),
                           ],
-                        ),
-                      ),const SizedBox(height: 10,),
-                      Container(
-                        width: 290,
-                        height: 65 ,
-                        decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Row(
-                          children: [SizedBox(width: 10),Text(' Sound ',style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFFEc0000),
-                              fontWeight: FontWeight.bold
-                          ),),
-                          ],
-                        ),
-                      ),const SizedBox(height: 17,),
-                      Container(
-                        width: 290,
-                        height: 65 ,
-                        decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Row(
-                          children: [SizedBox(width: 10),Text(' Vibration ',style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFFEc0000),
-                              fontWeight: FontWeight.bold
-                          ),),
-                          ],
-                        ),
-                      ),const SizedBox(height: 50,),
-                      Container(height: 40,
-                        width: 150,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Close the dialog
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero, // Remove default padding
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8), // Adjust the border radius as needed
-                            ),
-                          ),
-                          child: Container(
-                            height: 40,
-                            width: 150,
-                            child: const Image(
-                              image: AssetImage('asset/image/logout.png'),
-                              fit: BoxFit.fill, // Ensures the image covers the entire button area
-                            ),
-                          ),
                         ),
                       ),
+                      SizedBox(height: 10.h),
+                      Container(
+                        width: 290.w,
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                          color: Colors.red.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10.w),
+                            Text(
+                              'Support',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xFFEc0000),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 110.w),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    opaque: false,
+                                    pageBuilder: (BuildContext context, _, __) => OverlayPage(),
+                                  ),
+                                );
+                              },
+                              child: Image(
+                                height: 40.h,
+                                width: 62.w,
+                                image: const AssetImage('asset/image/CONTACT.png'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Container(
+                        width: 290.w,
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                          color: Colors.red.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10.w),
+                            Text(
+                              'Vibration',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xFFEc0000),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 87.w),
+                          ],
+                        ),
+                      ),SizedBox(height: 10.h),
+                      Container(
+                        width: 290.w,
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                          color: Colors.red.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10.w),
+                            Text(
+                              'Sound',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                color: const Color(0xFFEc0000),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      const Image(width: 116,
+                          height: 95,
+                          image: AssetImage('asset/image/Group 845 (1).png',)),
                     ],
                   ),
                 ),
               ),
               Positioned(
-                top: 115, // Adjust this value for the overlap
-                left: 10,
-                right: 10,
+                top: 35.h, // Adjust this value for the overlap
+                left: 10.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(width: 110),Image.asset(
-                      'asset/image/7.png', // Replace with your image path
-                      width: 140, // Adjust the width as needed
-                      height: 155, // Adjust the height to overlap more or less
+                    SizedBox(width: 62.w),
+                    Image.asset(
+                      'asset/image/7.png',
+                      width: 140.w,
+                      height: 159.h,
                     ),
-                    const SizedBox(width: 62), // Space between the images
+                    SizedBox(width: 49.w), // Space between the images
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.of(context).pop();
                       },
                       child: Image.asset(
-                        'asset/image/Vector.png', // Replace with your image path
-                        width: 50,
-                        height: 80,
+                        'asset/image/Vector.png',
+                        width: 40.w,
+                        height: 50.h,
                       ),
                     ),
                   ],
@@ -200,6 +219,7 @@ class _HomeState extends State<Home> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,36 +233,51 @@ class _HomeState extends State<Home> {
               fit: BoxFit.cover,
             ),
           ),
-
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 50.h),
                 child: Container(
-                  height: 80,
-                  width: 490,
+                  height: 55.h,
+                  width: 490.w,
                   decoration: const BoxDecoration(
                     color: Color(0xFFEc0000),
                   ),
                   child: Row(
                     children: [
-                      const SizedBox(width: 10),
+                      SizedBox(width: 10.w),
                       ClipOval(
                         child: Image.asset(
                           'asset/image/profile.png',
-                          height: 60,
-                          width: 60,
+                          height: 60.h,
+                          width: 60.w,
                           fit: BoxFit.cover,
                         ),
-                      ),const SizedBox(width: 193 ,),
-                      const Image(image: AssetImage('asset/image/top2.png',),width: 100,height: 60),
-                      const SizedBox(width: 10),
+                      ),
+                      SizedBox(width: 154.w),
+                       GestureDetector(
+                         onTap: (){
+                           Navigator.push(
+                             context,
+                             PageRouteBuilder(
+                               opaque: false, //
+                               pageBuilder: (BuildContext context, _, __) => const Wallet(),
+                             ),
+                           );
+                         },
+                         child: Image(
+                          image: const AssetImage('asset/image/top2.png'),
+                          width: 70.w,
+                          height: 60.h,
+                      ),
+                       ),
+                      SizedBox(width: 10.w),
                       GestureDetector(
                         onTap: _showOverlay, // Trigger the blur effect and new content
                         child: Image.asset(
                           'asset/image/home.png',
-                          height: 60,
-                          width: 60,
+                          height: 40.h,
+                          width: 40.w,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -250,35 +285,49 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              const SizedBox(height: 2),
+              SizedBox(height: 1.h),
               Image.asset(
                 'asset/image/3.png',
-                width: 140,
-                height: 130  ,
+                width: 100.w,
+                height: 78.h,
               ),
-              const SizedBox(height: 1),
+              SizedBox(height: 1.h),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(17),
+                  padding: EdgeInsets.all(18.w),
                   child: GridView.count(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    padding: const EdgeInsets.all(8),
+                    crossAxisSpacing: 10.w,
+                    mainAxisSpacing: 10.h,
+                    padding: EdgeInsets.all(8.w),
                     children: [
-                      GestureDetector(onTap: (){
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            opaque: false, // So the underlying screen is visible
-                            pageBuilder: (BuildContext context, _, __) => Po(),
-                          ),
-                        );
-                      },
-                          child: Image.asset('asset/image/po.png', width: 40, height: 50)),
-                      Image.asset('asset/image/pf.png', width: 30, height: 50),
-                      Image.asset('asset/image/bot.png', width: 30, height: 50),
-                      Image.asset('asset/image/pass and play.png', width: 30, height: 50),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder: (BuildContext context, _, __) => Po(),
+                            ),
+                          );
+                        },
+                        child: Image.asset('asset/image/po.png', width: 40.w, height: 50.h),
+                      ),
+                      Image.asset(
+                        'asset/image/pf.png',
+                        width: 30.w,
+                        height: 50.h,
+                      ),
+                      Image.asset(
+                        'asset/image/bot.png',
+                        width: 30.w,
+                        height: 50.h,
+                      ),
+                      Image.asset(
+                        'asset/image/bot.png',
+                        width: 30.w,
+                        height: 50.h,
+                      ),
                     ],
                   ),
                 ),
@@ -286,7 +335,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ],
-
       ),
     );
   }

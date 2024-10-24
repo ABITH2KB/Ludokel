@@ -28,7 +28,7 @@ class _CustomSwitchesState extends State<CustomSwitches> {
     return Material(
       color: Colors.transparent, // Use transparent color if needed
       child: Container(
-        height: 90,width: 40, // Adjust the height here
+        height: 90,width: 35, // Adjust the height here
         padding: const EdgeInsets.all(16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -36,7 +36,7 @@ class _CustomSwitchesState extends State<CustomSwitches> {
             Expanded(
               child: InkWell(
                 onTap: () => toggleSwitch(true),
-                child: Container(width: 40,
+                child: Container(width: 35,
                    height: 50,
                   decoration: BoxDecoration(
                     color: isFirstSwitchActive ? Colors.green : Colors.grey,
@@ -59,7 +59,7 @@ class _CustomSwitchesState extends State<CustomSwitches> {
             Expanded(
               child: InkWell(
                 onTap: () => toggleSwitch(false),
-                child: Container(height: 50,width: 40,
+                child: Container(height: 50,width: 30,
                   decoration: BoxDecoration(
                     color: isSecondSwitchActive ? Colors.green : Colors.grey,
                     borderRadius: BorderRadius.circular(8.0),

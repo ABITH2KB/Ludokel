@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
-import 'package:ludokhell/details.dart';
+import 'details.dart';
+
 
 class Otp extends StatefulWidget {
   final String verificationid;
@@ -17,6 +18,10 @@ class _OtpState extends State<Otp> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen width and height
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
@@ -24,62 +29,73 @@ class _OtpState extends State<Otp> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 30, top: 10), // Reduced top padding
-              child: Image.asset('asset/image/3.png', width: 220, height: 190), // Increased size
+              padding: EdgeInsets.only(left: screenWidth * 0.08, top: screenHeight * 0.01),
+              child: Image.asset(
+                'asset/image/3.png',
+                width: screenWidth * 0.6,
+                height: screenHeight * 0.2,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10), // Adjust the top padding to 10
+              padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: Stack(
                 children: [
                   Positioned(
-                    top: 10, // Adjust the top position to move it upwards
-                    left: 130, // Adjust the left position as needed
-                    child: Image.asset('asset/image/2.png', width: 180, height: 180),
+                    top: screenHeight * 0.02 ,
+                    left: screenWidth * 0.35,
+                    child: Image.asset('asset/image/2.png',
+                      width: screenWidth * 0.4,
+                      height: screenHeight * 0.2,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 44, top: 80, right: 30), // Reduced top padding
+                    padding: EdgeInsets.only(
+                      left: screenWidth * 0.12,
+                      top: screenHeight * 0.1,
+                      right: screenWidth * 0.08,
+                    ),
                     child: Container(
-                      width: 370,
-                      height: 510,
+                      width: screenWidth * 0.9,
+                      height: screenHeight * 0.6,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: const Color(0xFFFF8A8A),
-                            width: 4), // Adjust the value for more or less curvature
+                        border: Border.all(color: const Color(0xFFFF8A8A), width: 4),
                       ),
                       child: Column(
                         children: [
-                          const SizedBox(height: 20),
+                          SizedBox(height: screenHeight * 0.02),
                           const Text(
                             'OTP VERIFICATION',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                                fontFamily: 'chyler'
+                              fontFamily: 'chyler',
                             ),
                           ),
-                          const SizedBox(height: 15),
-                          Image.asset('asset/image/lock.png', width: 150, height: 160),
-                          const SizedBox(height: 10),
+                          SizedBox(height: screenHeight * 0.015),
+                          Image.asset(
+                            'asset/image/lock.png',
+                            width: screenWidth * 0.4,
+                            height: screenHeight * 0.2,
+                          ),
+                          SizedBox(height: screenHeight * 0.01),
                           const Text(
-                            'We will send  OTP to the registered',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                            'We will send OTP to the registered',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           const Text(
-                            'mobile number ',
+                            'mobile number',
                             style: TextStyle(
                               fontSize: 17,
                             ),
                           ),
-                          const Text(
-                            '',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: screenHeight * 0.01),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -87,30 +103,30 @@ class _OtpState extends State<Otp> {
                                     color: Colors.black.withOpacity(0.5),
                                     spreadRadius: 1,
                                     blurRadius: 5,
-                                    offset: const Offset(0, 2), // changes position of shadow
+                                    offset: const Offset(0, 2),
                                   ),
                                 ],
                               ),
-                              height: 50,
-                              width: 270,
+                              height: screenHeight * 0.06,
+                              width: screenWidth * 0.7,
                               child: TextField(
                                 controller: otpcontroller,
                                 style: const TextStyle(
-                                  color: Colors.white, // Set the text color to white
+                                  color: Colors.white,
                                 ),
                                 decoration: const InputDecoration(
                                   fillColor: Colors.black,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors.red, // Set the border color to red
-                                      width: 2.0, // You can adjust the width of the border if needed
+                                      color: Colors.red,
+                                      width: 2.0,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Colors.red, // Set the border color to red when the field is focused
-                                      width: 2.0, // You can adjust the width of the border if needed
+                                      color: Colors.red,
+                                      width: 2.0,
                                     ),
                                   ),
                                 ),
@@ -118,14 +134,14 @@ class _OtpState extends State<Otp> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 30),
+                            padding: EdgeInsets.only(top: screenHeight * 0.04),
                             child: SizedBox(
-                              height: 60,
+                              height: screenHeight * 0.1,
+                              width: screenWidth * 0.5,
                               child: ElevatedButton(
                                 onPressed: () async {
                                   try {
-                                    PhoneAuthCredential credential =
-                                    PhoneAuthProvider.credential(
+                                    PhoneAuthCredential credential = PhoneAuthProvider.credential(
                                         verificationId: widget.verificationid,
                                         smsCode: otpcontroller.text.toString());
                                     await FirebaseAuth.instance
@@ -144,14 +160,15 @@ class _OtpState extends State<Otp> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.zero, // Remove padding so the image fits correctly
-                                  primary: Colors.transparent, // Make the button background transparent
-                                  shadowColor: Colors.transparent, // Remove the shadow
+                                  padding: EdgeInsets.zero,
+                                  primary: Colors.transparent,
+                                  backgroundColor: Colors.transparent,
+                                  shadowColor: Colors.transparent,
                                 ),
                                 child: Image.asset(
                                   'asset/image/4.png',
-                                  width: 190,
-                                  height: 120,
+                                  width: screenWidth * 0.5,
+                                  height: screenHeight * 0.15,
                                 ),
                               ),
                             ),

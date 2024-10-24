@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "ludokhell" "\0"
+            VALUE "FileDescription", "ludokhel1" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ludokhell" "\0"
+            VALUE "InternalName", "ludokhel1" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ludokhell.exe" "\0"
-            VALUE "ProductName", "ludokhell" "\0"
+            VALUE "OriginalFilename", "ludokhel1.exe" "\0"
+            VALUE "ProductName", "ludokhel1" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

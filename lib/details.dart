@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ludokhell/home.dart';
+
 import 'bottom2.dart';
+
 class details extends StatefulWidget {
   const details({super.key});
+
   @override
   State<details> createState() => _LoginState();
 }
+
 class _LoginState extends State<details> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController referralCodeController = TextEditingController();
+
   Future<void> storeData() async {
     try {
       String name = nameController.text.trim();
       String email = emailController.text.trim();
       String referralCode = referralCodeController.text.trim();
-
-
 
       await FirebaseFirestore.instance
           .collection('details')
@@ -27,43 +29,53 @@ class _LoginState extends State<details> {
         'emailid': email,
         'referralCode': referralCode,
       }, SetOptions(merge: true));
-
     } catch (e) {
       print('Error storing data: ${e.toString()}');
     }
   }
+
   @override
   Widget build(BuildContext context) {
+    // Get screen dimensions
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 30, top: 10),
-              child: Image(
-                  image: AssetImage('asset/image/3.png'),
-                  width: 220,
-                  height: 190),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.08, top: screenHeight * 0.01),
+              child: Image.asset(
+                'asset/image/3.png',
+                width: screenWidth * 0.6,
+                height: screenHeight * 0.2,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: Stack(
                 children: [
-                  const Positioned(
-                    top: 10,
-                    left: 240,
-                    child: Image(
-                        image: AssetImage('asset/image/2.png'),
-                        width: 180,
-                        height: 180),
+                  Positioned(
+                    top: screenHeight * 0.02,
+                    left: screenWidth * 0.59,
+                    child: Image.asset(
+                      'asset/image/2.png',
+                      width: screenWidth * 0.4,
+                      height: screenHeight * 0.2,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 44, top: 80, right: 30),
+                    padding: EdgeInsets.only(
+                        left: screenWidth * 0.10,
+                        top: screenHeight * 0.1,
+                        right: screenWidth * 0.10),
                     child: Container(
-                      width: 370,
-                      height: 510,
+                      width: screenWidth * 0.9,
+                      height: screenHeight * 0.6,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -72,45 +84,44 @@ class _LoginState extends State<details> {
                       ),
                       child: Column(
                         children: [
-                          const SizedBox(height: 20),
+                          SizedBox(height: screenHeight * 0.02),
                           const Text(
                             'R E F E R A L',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
                                 color: Colors.red,
-                                fontFamily: 'chyler'
-                            ),
+                                fontFamily: 'chyler'),
                           ),
-                          const SizedBox(height: 20),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 140),
-                            child: Text(
-                              'Enter the name',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                             ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: screenHeight * 0.02),
                           Padding(
                             padding:
-                            const EdgeInsets.only(left: 20, right: 20),
+                            EdgeInsets.only(right: screenWidth * 0.35),
+                            child: const Text(
+                              'Enter the name',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: screenHeight * 0.01),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.05),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                    Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withOpacity(0.5),
                                     spreadRadius: 1,
                                     blurRadius: 5,
                                     offset: const Offset(0, 2),
                                   ),
                                 ],
                               ),
-                              height: 50,
-                              width: 270,
+                              height: screenHeight * 0.06,
+                              width: screenWidth * 0.7,
                               child: TextField(
                                 controller: nameController,
                                 style: const TextStyle(
@@ -135,33 +146,32 @@ class _LoginState extends State<details> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 140),
-                            child: Text(
+                          SizedBox(height: screenHeight * 0.02),
+                          Padding(
+                            padding:
+                            EdgeInsets.only(right: screenWidth * 0.35),
+                            child: const Text(
                               '  Enter Email Address',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 16, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.05),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                    Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withOpacity(0.5),
                                     spreadRadius: 1,
                                     blurRadius: 5,
                                     offset: const Offset(0, 2),
                                   ),
                                 ],
                               ),
-                              height: 50,
-                              width: 270,
+                              height: screenHeight * 0.06,
+                              width: screenWidth * 0.7,
                               child: TextField(
                                 controller: emailController,
                                 style: const TextStyle(
@@ -186,33 +196,32 @@ class _LoginState extends State<details> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 140),
-                            child: Text(
+                          SizedBox(height: screenHeight * 0.02),
+                          Padding(
+                            padding:
+                            EdgeInsets.only(right: screenWidth * 0.35),
+                            child: const Text(
                               '  Enter Referral Code',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 16, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Padding(
-                            padding:
-                            const EdgeInsets.only(left: 20, right: 20),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.05),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                    Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withOpacity(0.5),
                                     spreadRadius: 1,
                                     blurRadius: 5,
                                     offset: const Offset(0, 2),
                                   ),
                                 ],
                               ),
-                              height: 50,
-                              width: 270,
+                              height: screenHeight * 0.06,
+                              width: screenWidth * 0.7,
                               child: TextField(
                                 controller: referralCodeController,
                                 style: const TextStyle(
@@ -243,13 +252,14 @@ class _LoginState extends State<details> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  btab()),
+                                    builder: (context) => btab()),
                               );
                             },
-                            child: const Image(
-                                image: AssetImage('asset/image/5.png'),
-                                width: 190,
-                                height: 120),
+                            child: Image.asset(
+                              'asset/image/5.png',
+                              width: screenWidth * 0.5,
+                              height: screenHeight * 0.15,
+                            ),
                           ),
                         ],
                       ),

@@ -9,8 +9,8 @@ class MyApppp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Container(
-            width: 350,
-            height: 100,
+            width: 360,
+            height: 80,
             padding: EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: Colors.red.withOpacity(0.2),
@@ -67,9 +67,9 @@ class _SelectionWidgetState extends State<SelectionWidget> {
                     ),
                   ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 5,right: 3),
+                  padding: const EdgeInsets.only(bottom: 4,right: 3.5),
                   child: Transform.scale(
-                    scale: isSelected ? 1.3 : 1.0,
+                    scale: isSelected ? 1.4 : 1.0,
                     child: Image.asset(
                       crownImages[index],
                       width: 50,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ludokhell/home.dart';
-import 'package:ludokhell/tab2.dart';
+import 'package:ludokhel1/home.dart';
+import 'package:ludokhel1/tab2.dart';
 class TabNavigationItem {
   final Widget page;
   final Widget title;

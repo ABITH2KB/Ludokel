@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
-
 class Overlayview extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -18,38 +18,36 @@ class Overlayview extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image with blur effect
           Positioned.fill(
             child: Image.asset(
-              'asset/image/wall.jpg', // Replace with your image path
+              'asset/image/back.jpeg',
               fit: BoxFit.cover,
             ),
           ),
-          // Apply blur effect to the background image
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), // Adjust the blur radius as needed
+              filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
               child: Container(
-                color: Colors.black.withOpacity(0.3), // Optional: Add a semi-transparent overlay
+                color: Colors.black.withOpacity(0.1),
               ),
             ),
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 70),
+              padding: EdgeInsets.only(top: 40.h),  // Adjusted with ScreenUtil
               child: Container(
-                padding: const EdgeInsets.all(20),
-                width: 340,
-                height: 504,
+                padding: EdgeInsets.all(20.w),
+                width: 300.w,
+                height: 400.h,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9), // Semi-transparent white background
-                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white.withOpacity(0.9),
+                  borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(color: Colors.red),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.7),
-                      blurRadius: 0,
-                      offset: const Offset(0, 0),
+                      blurRadius: 0.r,
+                      offset: Offset(0, 0.h),
                     ),
                   ],
                 ),
@@ -57,123 +55,37 @@ class Overlayview extends StatelessWidget {
                   future: _fetchDetails(),
                   builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                     if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     }
                     if (!snapshot.hasData || snapshot.data == null) {
-                      return Center(child: Text('No data found.'));
+                      return const Center(child: Text('No data found.'));
                     }
-
                     final data = snapshot.data!;
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 18),
-                        const Image(
-                            width: 80,
-                            height: 90,
-                            image: AssetImage('asset/image/Ellipses.png')
+                        SizedBox(height: 1.h),
+                        Image(
+                          width: 70.w,
+                          height: 70.h,
+                          image: const AssetImage('asset/image/Ellipses.png'),
                         ),
-                        const Image(
-                            width: 110,
-                            height: 50,
-                            image: AssetImage('asset/image/change.png')
+                        Image(
+                          width: 90.w,
+                          height: 50.h,
+                          image: const AssetImage('asset/image/change.png'),
                         ),
-                        const SizedBox(height: 20),
-                        Container(
-                          width: 290,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text(
-                                ' NAME: ${data['name'] ?? 'Unknown'}',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 290,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text(
-                                ' Refferal: ${data['referralCode'] ?? 'Unknown'}',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 290,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text(
-                                ' Email: ${data['emailid'] ?? 'Unknown'}',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 190,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: 10),
-                              Text(
-                                '     Total wins',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        SizedBox(height: 20.h),
+                        _buildInfoRow('NAME: ${data['name'] ?? 'Unknown'}'),
+                        SizedBox(height: 10.h),
+                        _buildInfoRow('Mobile: ${data['referralCode'] ?? 'Unknown'}'),
+                        SizedBox(height: 10.h),
+                        _buildInfoRow('Email: ${data['emailid'] ?? 'Unknown'}'),
+                        SizedBox(height: 30.h),
+                        _buildTotalWins(),
                       ],
                     );
                   },
@@ -182,25 +94,79 @@ class Overlayview extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 219,
-            left: 26,
-            right: 30,
+            top: 110.h,
+            left: 5.w,
+
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(width: 120),
+                SizedBox(width: 90.w),
                 Image.asset(
                   'asset/image/profilep.png',
-                  width: 170,
-                  height: 110,
+                  width: 170.w,
+                  height: 110.h,
                 ),
-                const SizedBox(width: 44),
-                Image.asset(
-                  'asset/image/Vector.png',
-                  width: 55,
-                  height: 80,
+                SizedBox(width: 15.w),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Image.asset(
+                    'asset/image/Vector.png',
+                    width: 55.w,
+                    height: 40.h,
+                  ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String text) {
+    return Container(
+      width: 248.w,
+      height: 40.h,
+      decoration: BoxDecoration(
+        color:  const Color(0xFF980E0E),
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 10.w),
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: 15.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildTotalWins() {
+    return Container(
+      width: 150.w,
+      height: 40.h,
+      decoration: BoxDecoration(
+        color:  const Color(0xFF980E0E),
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 10.w),
+          Text(
+            '     Total wins',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none,
             ),
           ),
         ],

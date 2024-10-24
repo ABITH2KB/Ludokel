@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ludokhell/player2,4.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Add this import
+import 'package:ludokhel1/player2,4.dart';
+import 'package:ludokhel1/switch.dart';
 import 'dart:ui';
 
-import 'package:ludokhell/switch.dart';
-
 import 'Counter.dart';
-import 'crown selection.dart'; // For ImageFilter
+import 'crown selection.dart';
+import 'new/game.dart';
+import 'new/main.dart';
 
 class Po extends StatelessWidget {
   @override
@@ -23,14 +25,14 @@ class Po extends StatelessWidget {
         ),
         Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 70),
+            padding: EdgeInsets.only(top: 58.h), // Use .h for height scaling
             child: Container(
-              padding: const EdgeInsets.all(20),
-              width: 340,
-              height: 504,
+              padding: EdgeInsets.all(20.w), // Use .w for width scaling
+              width: 300.w,
+              height: 400.h,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15.r), // Use .r for radius scaling
                 border: Border.all(color: Colors.red),
                 boxShadow: [
                   BoxShadow(
@@ -44,51 +46,57 @@ class Po extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Container(
-                      width: double.infinity,
-                      height: 70,
+                      width: 345,
+                      height: 80,
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                         border: Border.all(color: Colors.red),
                       ),
                       child: const CustomSwitches(), // Replace the container with CustomSwitches
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 10.h),
                     Container(
-                      width: double.infinity,
-                      height: 80,
-
+                      width: 255.w,
+                      height: 65.h,
                       child: MyApppp(),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 10.h),
                     Container(
-                      width: double.infinity,
-                      height: 80,
+                      width: 255.w,
+                      height: 55.h,
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                         border: Border.all(color: Colors.red),
                       ),
                       child: const Counter(),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: 10.h),
                     Container(
-                      width: double.infinity,
-                      height: 70,
+                      width: 255.w,
+                      height: 50.h,
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                         border: Border.all(color: Colors.red),
                       ),
                       child: const CustomSwitches2(),
                     ),
-                    const SizedBox(height: 10),
-                    Image.asset(
-                      'asset/image/844.png', // Replace with your image path
-                      width: 130,
-                      height: 90,
+                    SizedBox(height: 5.h),
+                    GestureDetector(onTap: (){
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  FludoGame  ()),
+    );
+                    },
+                      child: Image.asset(
+                        'asset/image/844.png', // Replace with your image path
+                        width: 120.w,
+                        height: 70.h,
+                      ),
                     ),
                   ],
                 ),
@@ -97,27 +105,26 @@ class Po extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 220, // Adjust this value for the overlap
-          left: 40,
-          right: 10,
+          top: 128.h, // Adjust this value for the overlap
+          left: 50.w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(width: 100),
+              SizedBox(width: 40.w),
               Image.asset(
                 'asset/image/879.png',
-                width: 180,
-                height: 100, // Adjust the height to overlap more or less
+                width: 180.w,
+                height: 100.h, // Adjust the height to overlap more or less
               ),
-              const SizedBox(width: 20), // Space between the images
+              SizedBox(width: 10.w), // Space between the images
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).pop();
                 },
                 child: Image.asset(
                   'asset/image/Vector.png', // Replace with your image path
-                  width: 100,
-                  height: 50,
+                  width: 90.w,
+                  height: 40.h,
                 ),
               ),
             ],
@@ -129,7 +136,12 @@ class Po extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
-    home: Po(),
-  ));
+  runApp(
+    ScreenUtilInit(
+      designSize: Size(375, 812), // Specify the design size for scaling (e.g., iPhone X size)
+      builder: (context, child) => MaterialApp(debugShowCheckedModeBanner: false,
+        home: Po(),
+      ),
+    ),
+  );
 }

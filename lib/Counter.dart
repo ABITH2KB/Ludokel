@@ -12,14 +12,14 @@ class _CounterState extends State<Counter> {
 
   void _increment() {
     setState(() {
-      _count++;
+      _count+=5;
     });
   }
 
   void _decrement() {
     setState(() {
       if (_count > 0) {
-        _count--;
+        _count-=5;
       }
     });
   }
@@ -34,7 +34,8 @@ class _CounterState extends State<Counter> {
             'SELECT YOUR BET',
             style: TextStyle(
               fontFamily: 'chyler',
-              fontSize: 19,
+              fontSize: 15,
+              color: Colors.red,
               decoration: TextDecoration.none,
             ),
           ),
